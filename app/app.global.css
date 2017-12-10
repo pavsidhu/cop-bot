@@ -1,9 +1,20 @@
+html {
+  margin: 0;
+  height: 100vh;
+  padding: 0;
+  width: 100vw;
+}
+
 body {
   position: relative;
+  top: -16px;
+  padding-top: 16px;
   height: 100vh;
+  width: 100vw;
+  margin: 0;
   background-color: #fcfcfc;
-  font-family: Helvetica Neue, serif;
-  overflow-y: hidden;
+  font-family: 'Helvetica Neue', serif;
+  /* overflow-y: hidden; */
 }
 
 li {
@@ -18,4 +29,8 @@ a {
 a:hover {
   text-decoration: none;
   cursor: pointer;
+}
+
+p {
+  margin: 0;
 }
