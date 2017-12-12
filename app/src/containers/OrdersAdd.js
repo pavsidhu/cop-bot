@@ -38,50 +38,48 @@ class OrdersAdd extends React.Component<Props, State> {
 
   render() {
     return (
-      <div>
-        <Paper backButton backButtonLink="/orders" backButtonLabel="Orders">
-          <TextField
-            name="keywords"
-            placeholder="Keywords (Separated by commas)"
-            onChange={this.formChange}
-            value={this.state.form.keywords}
-          />
-          <SelectField
-            name="category"
-            placeholder="Category"
-            onChange={this.formChange}
-            value={this.state.form.category}
-          >
-            <option value="none">None</option>
-            <option value="accessories">Accessories</option>
-            <option value="hats">Hats</option>
-            <option value="pants">Pants</option>
-            <option value="jacket">Jacket</option>
-            <option value="shirts">Shirts</option>
-            <option value="shoes">Shoes</option>
-            <option value="skate">Skate</option>
-            <option value="sweatshirts">Sweatshirts</option>
-          </SelectField>
-          <TextField
-            name="size"
-            placeholder="Size"
-            onChange={this.formChange}
-            value={this.state.form.size}
-          />
-          <TextField
-            name="color"
-            placeholder="Color"
-            onChange={this.formChange}
-            value={this.state.form.color}
-          />
+      <Paper backButton="Orders">
+        <TextField
+          name="keywords"
+          placeholder="Keywords (Separated by commas)"
+          onChange={this.formChange}
+          value={this.state.form.keywords}
+        />
+        <SelectField
+          name="category"
+          placeholder="Category"
+          onChange={this.formChange}
+          value={this.state.form.category}
+        >
+          <option value="none">None</option>
+          <option value="accessories">Accessories</option>
+          <option value="hats">Hats</option>
+          <option value="pants">Pants</option>
+          <option value="jacket">Jacket</option>
+          <option value="shirts">Shirts</option>
+          <option value="shoes">Shoes</option>
+          <option value="skate">Skate</option>
+          <option value="sweatshirts">Sweatshirts</option>
+        </SelectField>
+        <TextField
+          name="size"
+          placeholder="Size"
+          onChange={this.formChange}
+          value={this.state.form.size}
+        />
+        <TextField
+          name="color"
+          placeholder="Color"
+          onChange={this.formChange}
+          value={this.state.form.color}
+        />
 
-          <Subheader>Accounts to Use</Subheader>
+        <Subheader>Accounts to Use</Subheader>
 
-          <CheckBox name="pavsidhu" value="1" />
+        <CheckBox name="pavsidhu" value="1" />
 
-          <Button text="Create Order" />
-        </Paper>
-      </div>
+        <Button text="Create Order" />
+      </Paper>
     )
   }
 }

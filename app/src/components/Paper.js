@@ -1,33 +1,27 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 type Props = {
-  backButton?: boolean,
-  backButtonLink?: string,
-  backButtonText?: string,
+  backButton?: string,
   children: React.Node
 };
 
 const Paper = (props: Props) => (
   <Container>
     {props.backButton ? (
-      <Link to={props.backButtonLink}>
-        <BackButton>
-          <BackButtonIcon src="./src/assets/icons/back.svg" />
-          <BackButtonText>{props.backButtonText}</BackButtonText>
-        </BackButton>
-      </Link>
+      <BackButton onClick={props.history.goBack}>
+        <BackButtonIcon src="./src/assets/icons/back.svg" />
+        <BackButtonText>{props.backButton}</BackButtonText>
+      </BackButton>
     ) : null}
     <ChildrenContainer>{props.children}</ChildrenContainer>
   </Container>
 )
 
 Paper.defaultProps = {
-  backButton: false,
-  backButtonLink: '/',
-  backButtonText: 'Back',
+  backButton: null,
 }
 
 const Container = styled.div`
@@ -65,4 +59,4 @@ const ChildrenContainer = styled.div`
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
 `
 
-export default Paper
+export default withRouter(Paper)
