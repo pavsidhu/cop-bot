@@ -10,9 +10,7 @@ import Button from '../components/Button'
 type Props = {};
 
 type State = {
-  form: {
-    merchant: string
-  }
+  form: {}
 };
 
 class OrdersAdd extends React.Component<Props, State> {
@@ -20,9 +18,7 @@ class OrdersAdd extends React.Component<Props, State> {
     super(props)
 
     this.state = {
-      form: {
-        merchant: '',
-      },
+      form: {},
     }
 
     this.formChange = this.formChange.bind(this)
