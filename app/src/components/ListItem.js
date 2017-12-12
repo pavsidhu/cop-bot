@@ -67,7 +67,7 @@ const Options = styled.div`
 
 const Option = styled.div`
   margin-left: 24px;
-  color: #313131;
+  color: #818181;
 `
 
 export default ListItem

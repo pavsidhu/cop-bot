@@ -33,11 +33,11 @@ const Button = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 100ms;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 100ms;
 
-  &:hover ${Icon} {
-    transform: scale(1.2);
+  &:hover {
+    transform: scale(1.05);
   }
 `
 

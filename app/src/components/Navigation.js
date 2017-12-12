@@ -12,10 +12,10 @@ const Navigation = (props: Props) => (
     <Title>{props.title}</Title>
 
     <Tabs>
-      <Tab active={props.location.pathname === '/orders'}>
+      <Tab active={props.location.pathname.includes('/orders')}>
         <Link to="/orders">Orders</Link>
       </Tab>
-      <Tab active={props.location.pathname === '/accounts'}>
+      <Tab active={props.location.pathname.includes('/accounts')}>
         <Link to="/accounts">Accounts</Link>
       </Tab>
     </Tabs>
