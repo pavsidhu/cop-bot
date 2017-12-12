@@ -12,12 +12,12 @@ const Navigation = (props: Props) => (
     <Title>{props.title}</Title>
 
     <Tabs>
-      <Tab active={props.location.pathname.includes('/orders')}>
-        <Link to="/orders">Orders</Link>
-      </Tab>
-      <Tab active={props.location.pathname.includes('/accounts')}>
-        <Link to="/accounts">Accounts</Link>
-      </Tab>
+      <Link to="/orders">
+        <Tab active={props.location.pathname.includes('/orders')}>Orders</Tab>
+      </Link>
+      <Link to="/accounts">
+        <Tab active={props.location.pathname.includes('/accounts')}>Accounts</Tab>
+      </Link>
     </Tabs>
   </Container>
 )
@@ -44,10 +44,13 @@ const Tabs = styled.div`
   display: flex;
   align-self: stretch;
   overflow: hidden;
+
+  * {
+    flex: 1;
+  }
 `
 
 const Tab = styled.div`
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
