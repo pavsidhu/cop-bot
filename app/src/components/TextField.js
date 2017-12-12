@@ -8,7 +8,7 @@ type Props = {
   placeholder?: string,
   value?: string,
   autofocus?: boolean,
-  onChange: ?(SyntheticInputEvent) => void
+  onChange: SyntheticInputEvent => void
 };
 
 const TextField = (props: Props) => (
@@ -16,7 +16,7 @@ const TextField = (props: Props) => (
     name={props.name}
     type={props.type}
     placeholder={props.placeholder}
-    onChange={props.onChange}
+    onChange={e => props.onChange(e)}
     value={props.value}
     autofocus={props.autofocus}
   />
