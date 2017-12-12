@@ -7,9 +7,10 @@ import AddIcon from '../assets/icons/add.svg'
 
 const OrdersList = () => (
   <Container>
-    <ListItem title="Supreme 1" subtitle="Pav Sidhu" />
-    <ListItem title="Supreme 2" subtitle="Pav Sidhu" />
-    <ListItem title="Supreme 3" subtitle="Pav Sidhu" />
+    <ListItem title="Supreme 1" status="waiting" subtitle="Pav Sidhu" />
+    <ListItem title="Supreme 2" status="running" subtitle="Pav Sidhu" />
+    <ListItem title="Supreme 3" status="success" subtitle="Pav Sidhu" />
+    <ListItem title="Supreme 4" status="failure" subtitle="Pav Sidhu" />
 
     <FloatingActionButton link="/orders/add" icon={AddIcon} />
   </Container>

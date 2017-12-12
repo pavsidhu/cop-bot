@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom'
 
 type Props = {
   title: string,
-  subtitle: string
+  subtitle: string,
+  status?: 'waiting' | 'running' | 'success' | 'failure' | null
 };
 
 const ListItem = (props: Props) => (
   <Container>
-    <Status />
+    {props.status ? <Status status={props.status} /> : null}
     <Description>
       <Title>{props.title}</Title>
       <Subtitle>{props.subtitle}</Subtitle>
@@ -22,6 +23,10 @@ const ListItem = (props: Props) => (
     </Options>
   </Container>
 )
+
+ListItem.defaultProps = {
+  status: null,
+}
 
 const Container = styled.div`
   display: flex;
@@ -37,9 +42,36 @@ const Container = styled.div`
 const Status = styled.div`
   width: 40px;
   height: 40px;
-  border-radius: 100%;
-  background-color: #313131;
+  border-radius: 50%;
   margin-right: 16px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+
+  ${props => {
+    switch (props.status) {
+      case 'running':
+        return css`
+          background-image: url('./src/assets/icons/status_running.svg'),
+            linear-gradient(to top, #4481eb 0%, #04befe 100%);
+        `
+      case 'success':
+        return css`
+          background-image: url('./src/assets/icons/status_success.svg'),
+            linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+        `
+      case 'failure':
+        return css`
+          background-image: url('./src/assets/icons/status_failure.svg'),
+            linear-gradient(to top, #f77062 0%, #fe5196 100%);
+        `
+      case 'waiting':
+      default:
+        return css`
+          background-image: url('./src/assets/icons/status_waiting.svg'),
+            linear-gradient(60deg, #29323c 0%, #485563 100%);
+        `
+    }
+  }}};
 `
 
 const Description = styled.div`
