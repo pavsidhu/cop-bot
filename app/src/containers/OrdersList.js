@@ -5,6 +5,7 @@ import { inject, observer } from 'mobx-react'
 
 import Paper from '../components/Paper'
 import ListItem from '../components/ListItem'
+import Bot from '../components/Bot'
 import FloatingActionButton from '../components/FloatingActionButton'
 import AddIcon from '../assets/icons/add.svg'
 
@@ -37,6 +38,7 @@ class OrdersList extends React.Component {
         title={order.keywords.join(', ')}
         subtitle={accountsStore.accounts[order.accountId].name}
         key={order.id}
+        status={order.state}
         onClickDelete={() => ordersStore.remove(order.id)}
       />
     ))
@@ -46,13 +48,16 @@ class OrdersList extends React.Component {
     const { accountsStore, ordersStore } = this.props
 
     return (
-      <Paper noMargin={!ordersStore.isEmpty()}>
-        {this.getOrders()}
+      <div>
+        <Bot />
+        <Paper noMargin={!ordersStore.isEmpty()}>
+          {this.getOrders()}
 
-        {accountsStore.isEmpty() ? null : (
-          <FloatingActionButton link="/orders/add" icon={AddIcon} />
-        )}
-      </Paper>
+          {accountsStore.isEmpty() ? null : (
+            <FloatingActionButton link="/orders/add" icon={AddIcon} />
+          )}
+        </Paper>
+      </div>
     )
   }
 }
