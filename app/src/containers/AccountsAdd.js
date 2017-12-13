@@ -1,34 +1,39 @@
-// @flow
 import React from 'react'
+import { inject } from 'mobx-react'
+import { withRouter } from 'react-router-dom'
 import Paper from '../components/Paper'
 import TextField from '../components/TextField'
 import SelectField from '../components/SelectField'
 import Subheader from '../components/Subheader'
 import Button from '../components/Button'
 
-type Props = {};
-
-type State = {
-  form: {}
-};
-
-class AccountsAdd extends React.Component<Props, State> {
-  constructor(props: Props) {
+@inject('accountsStore')
+@withRouter
+class AccountsAdd extends React.Component {
+  constructor(props) {
     super(props)
 
     this.state = {
-      form: {}
+      form: {},
     }
 
     this.formChange = this.formChange.bind(this)
+    this.formSubmit = this.formSubmit.bind(this)
   }
 
-  formChange(event: SyntheticInputEvent): void {
+  formChange(event) {
     this.setState({
       form: {
+        ...this.state.form,
         [event.target.name]: event.target.value,
       },
     })
+  }
+
+  formSubmit() {
+    this.props.accountsStore.add(this.state.form)
+
+    this.props.history.goBack()
   }
 
   render() {
@@ -84,12 +89,7 @@ class AccountsAdd extends React.Component<Props, State> {
           onChange={this.formChange}
           value={this.state.form.postcode}
         />
-        <SelectField
-          name="country"
-          placeholder="Country"
-          onChange={this.formChange}
-          value={this.state.form.country}
-        >
+        <SelectField name="country" onChange={this.formChange} value={this.state.form.country}>
           <option value="AF">Afghanistan</option>
           <option value="AX">Aland Islands</option>
           <option value="AL">Albania</option>
@@ -344,12 +344,14 @@ class AccountsAdd extends React.Component<Props, State> {
 
         <Subheader>Card Details</Subheader>
 
-        <TextField
-          name="cardType"
-          placeholder="Card Type"
-          onChange={this.formChange}
-          value={this.state.form.cardType}
-        />
+        <SelectField name="cardType" onChange={this.formChange} value={this.state.form.cardType}>
+          <option value="visa">Visa</option>
+          <option value="american_express">American Express</option>
+          <option value="master">Mastercard</option>
+          <option value="solo">Solo</option>
+          <option value="paypal">PayPal</option>
+        </SelectField>
+
         <TextField
           name="cardNumber"
           placeholder="Card Number"
@@ -375,7 +377,7 @@ class AccountsAdd extends React.Component<Props, State> {
           value={this.state.form.cardCvv}
         />
 
-        <Button text="Create Account" />
+        <Button text="Create Account" onClick={this.formSubmit} />
       </Paper>
     )
   }

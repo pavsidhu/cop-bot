@@ -1,39 +1,34 @@
-// @flow
 import React from 'react'
 import styled from 'styled-components'
 
-type Props = {
-  name: string,
-  value?: string,
-  placeholder?: string,
-  onChange?: SyntheticInputEvent => void
-};
+// type Props = {
+//   value: string | number,
+//   label: string,
+//   onChange: SyntheticInputEvent => void
+// };
 
-const CheckBox = (props: Props) => (
+const CheckBox = props => (
   <Container>
     <Input
       name={props.name}
-      id={props.name}
-      type="checkbox"
-      onChange={props.onChange}
       value={props.value}
+      type="checkbox"
+      onChange={event => {
+        console.log(event)
+        props.onChange(event)
+      }}
+      checked={props.checked}
     />
-    <Label htmlFor={props.name}>{props.placeholder}</Label>
+    <Label>{props.label}</Label>
   </Container>
 )
-
-CheckBox.defaultProps = {
-  value: '',
-  placeholder: 'Checkbox',
-  onChange: () => null,
-}
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   width: 80%;
   max-width: 400px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 `
 
 const Input = styled.input`
@@ -60,7 +55,6 @@ const Input = styled.input`
 const Label = styled.label`
   margin-left: 8px;
   font-size: 18px;
-  cursor: pointer;
   -webkit-user-select: none;
 `
 

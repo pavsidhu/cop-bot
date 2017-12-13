@@ -1,10 +1,11 @@
 // @flow
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { withRouter } from 'react-router'
 
 type Props = {
   backButton?: string,
+  noMargin?: boolean,
   children: React.Node
 };
 
@@ -16,12 +17,13 @@ const Paper = (props: Props) => (
         <BackButtonText>{props.backButton}</BackButtonText>
       </BackButton>
     ) : null}
-    <ChildrenContainer>{props.children}</ChildrenContainer>
+    <ChildrenContainer noMargin={props.noMargin}>{props.children}</ChildrenContainer>
   </Container>
 )
 
 Paper.defaultProps = {
-  backButton: null,
+  backButton: '',
+  noMargin: false,
 }
 
 const Container = styled.div`
@@ -53,10 +55,15 @@ const ChildrenContainer = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-  padding: 24px 0;
   border-radius: 8px;
   background-color: white;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+
+  ${props =>
+    !props.noMargin &&
+    css`
+      padding: 24px 0;
+    `};
 `
 
 export default withRouter(Paper)

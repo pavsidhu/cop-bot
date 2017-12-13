@@ -3,10 +3,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 type Props = {
-  text: string
+  text: string,
+  onClick: () => void
 };
 
-const Button = (props: Props) => <Container>{props.text}</Container>
+const Button = (props: Props) => <Container onClick={props.onClick}>{props.text}</Container>
 
 const Container = styled.div`
   display: flex;

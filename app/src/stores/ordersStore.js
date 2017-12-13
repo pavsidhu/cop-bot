@@ -7,10 +7,11 @@ class OrdersStore {
   @observable
   orders = []
 
-  add(details) {
+  add(details, accountId) {
     this.orders.push(
       new Order({
         id: this.orders.length,
+        accountId,
         ...details,
       }),
     )
@@ -22,6 +23,10 @@ class OrdersStore {
 
   remove(id) {
     this.orders = this.orders.filter(order => order.id !== id)
+  }
+
+  isEmpty() {
+    return this.orders.length === 0
   }
 }
 

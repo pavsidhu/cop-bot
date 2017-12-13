@@ -1,28 +1,73 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
+import { inject, observer } from 'mobx-react'
+
+import Paper from '../components/Paper'
 import ListItem from '../components/ListItem'
 import FloatingActionButton from '../components/FloatingActionButton'
 import AddIcon from '../assets/icons/add.svg'
 
-const AccountsList = () => (
-  <Container>
-    <ListItem title="Pav Sidhu" subtitle="Visa 4444333322221111" />
-    <ListItem title="John Smith" subtitle="Mastercard 4444333322221111" />
-    <ListItem title="Michael Lee" subtitle="American Express 4444333322221111" />
+@inject('accountsStore')
+@observer
+class AccountsList extends React.Component {
+  constructor() {
+    super()
 
-    <FloatingActionButton link="/accounts/add" icon={AddIcon} />
-  </Container>
-)
+    this.getAccounts = this.getAccounts.bind(this)
+  }
 
-const Container = styled.div`
+  getAccounts() {
+    const { accountsStore } = this.props
+
+    if (accountsStore.isEmpty()) {
+      return (
+        <EmptyContainer>
+          <EmptyIcon>¯\_(ツ)_/¯</EmptyIcon>
+          <EmptyText>No accounts have been added</EmptyText>
+        </EmptyContainer>
+      )
+    }
+
+    return accountsStore.accounts.map(account => (
+      <ListItem
+        title={account.name}
+        subtitle={`${account.addressOne} ${account.city}`}
+        key={account.id}
+        onClickDelete={() => accountsStore.remove(account.id)}
+      />
+    ))
+  }
+
+  render() {
+    const { accountsStore } = this.props
+
+    return (
+      <Paper noMargin={!accountsStore.isEmpty()}>
+        {this.getAccounts()}
+
+        <FloatingActionButton link="/accounts/add" icon={AddIcon} />
+      </Paper>
+    )
+  }
+}
+
+const EmptyContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
-  margin: 24px;
-  border-radius: 8px;
-  background-color: white;
-  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  justify-content: center;
+`
+
+const EmptyIcon = styled.p`
+  font-size: 32px;
+  color: #818181;
+  margin-bottom: 8px;
+`
+
+const EmptyText = styled.p`
+  font-size: 16px;
+  color: #818181;
 `
 
 export default AccountsList

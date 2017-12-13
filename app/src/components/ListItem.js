@@ -19,7 +19,7 @@ const ListItem = (props: Props) => (
 
     <Options>
       <Option>Edit</Option>
-      <Option>Delete</Option>
+      <Option onClick={props.onClickDelete}>Delete</Option>
     </Options>
   </Container>
 )
@@ -30,11 +30,12 @@ ListItem.defaultProps = {
 
 const Container = styled.div`
   display: flex;
+  align-self: stretch;
   align-items: center;
   padding: 16px 16px;
   cursor: pointer;
 
-  &:nth-child(odd) {
+  &:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.02);
   }
 `

@@ -23,6 +23,10 @@ class AccountsStore {
   remove(id) {
     this.accounts = this.accounts.filter(account => account.id !== id)
   }
+
+  isEmpty() {
+    return this.accounts.length === 0
+  }
 }
 
 export default new AccountsStore()
