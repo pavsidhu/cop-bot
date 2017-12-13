@@ -49,7 +49,7 @@ class OrdersList extends React.Component {
 
     return (
       <div>
-        <Bot />
+        {!ordersStore.isEmpty() ? <Bot /> : null}
         <Paper noMargin={!ordersStore.isEmpty()}>
           {this.getOrders()}
 
