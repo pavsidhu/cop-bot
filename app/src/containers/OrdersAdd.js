@@ -68,14 +68,14 @@ class OrdersAdd extends React.Component {
           value={this.state.form.category}
         >
           <option value="none">None</option>
-          <option value="accessories">Accessories</option>
-          <option value="hats">Hats</option>
-          <option value="pants">Pants</option>
           <option value="jacket">Jacket</option>
-          <option value="shirts">Shirts</option>
-          <option value="shoes">Shoes</option>
-          <option value="skate">Skate</option>
+          <option value="tops_sweaters">tops/sweaters</option>
           <option value="sweatshirts">Sweatshirts</option>
+          <option value="pants">Pants</option>
+          <option value="hats">Hats</option>
+          <option value="bags">Bags</option>
+          <option value="accessories">Accessories</option>
+          <option value="skate">Skate</option>
         </SelectField>
         <TextField
           name="size"
