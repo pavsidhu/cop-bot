@@ -8,7 +8,7 @@ import ListItem from '../components/ListItem'
 import FloatingActionButton from '../components/FloatingActionButton'
 import AddIcon from '../assets/icons/add.svg'
 
-@inject('accountsStore')
+@inject('accountsStore', 'ordersStore')
 @observer
 class AccountsList extends React.Component {
   constructor() {
@@ -18,7 +18,7 @@ class AccountsList extends React.Component {
   }
 
   getAccounts() {
-    const { accountsStore } = this.props
+    const { accountsStore, ordersStore } = this.props
 
     if (accountsStore.isEmpty()) {
       return (
@@ -34,7 +34,12 @@ class AccountsList extends React.Component {
         title={account.name}
         subtitle={`${account.addressOne} ${account.city}`}
         key={account.id}
-        onClickDelete={() => accountsStore.remove(account.id)}
+        onClickDelete={() => {
+          accountsStore.remove(account.id)
+          ordersStore.orders.map(order => {
+            if (order.accountId === account.id) ordersStore.remove(order.id)
+          })
+        }}
       />
     ))
   }
