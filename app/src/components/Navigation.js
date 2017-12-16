@@ -2,6 +2,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Link, withRouter } from 'react-router-dom'
+import Bot from './Bot'
 
 type Props = {
   title: string
@@ -10,6 +11,8 @@ type Props = {
 const Navigation = (props: Props) => (
   <Container>
     <Title>{props.title}</Title>
+
+    <Bot />
 
     <Tabs>
       <Link to="/orders">
