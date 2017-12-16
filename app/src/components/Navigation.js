@@ -31,6 +31,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
 `
 
 const Title = styled.p`
