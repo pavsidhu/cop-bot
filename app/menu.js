@@ -1,5 +1,5 @@
 // @flow
-import { app, Menu, shell, BrowserWindow } from 'electron'
+import { app, Menu, BrowserWindow } from 'electron'
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow
@@ -9,6 +9,8 @@ export default class MenuBuilder {
   }
 
   buildMenu() {
+    this.mainWindow.setMinimumSize(600, 400)
+
     if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
       this.setupDevelopmentEnvironment()
     }
@@ -47,11 +49,11 @@ export default class MenuBuilder {
     const subMenuAbout = {
       label: 'Electron',
       submenu: [
-        { label: 'About ElectronReact', selector: 'orderFrontStandardAboutPanel:' },
+        { label: 'About Cop Bot', selector: 'orderFrontStandardAboutPanel:' },
         { type: 'separator' },
         { label: 'Services', submenu: [] },
         { type: 'separator' },
-        { label: 'Hide ElectronReact', accelerator: 'Command+H', selector: 'hide:' },
+        { label: 'Hide Cop Bot', accelerator: 'Command+H', selector: 'hide:' },
         {
           label: 'Hide Others',
           accelerator: 'Command+Shift+H',
@@ -127,39 +129,10 @@ export default class MenuBuilder {
         { label: 'Bring All to Front', selector: 'arrangeInFront:' },
       ],
     }
-    const subMenuHelp = {
-      label: 'Help',
-      submenu: [
-        {
-          label: 'Learn More',
-          click() {
-            shell.openExternal('http://electron.atom.io')
-          },
-        },
-        {
-          label: 'Documentation',
-          click() {
-            shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme')
-          },
-        },
-        {
-          label: 'Community Discussions',
-          click() {
-            shell.openExternal('https://discuss.atom.io/c/electron')
-          },
-        },
-        {
-          label: 'Search Issues',
-          click() {
-            shell.openExternal('https://github.com/atom/electron/issues')
-          },
-        },
-      ],
-    }
 
     const subMenuView = process.env.NODE_ENV === 'development' ? subMenuViewDev : subMenuViewProd
 
-    return [subMenuAbout, subMenuEdit, subMenuView, subMenuWindow, subMenuHelp]
+    return [subMenuAbout, subMenuEdit, subMenuView, subMenuWindow]
   }
 
   buildDefaultTemplate() {
@@ -216,35 +189,6 @@ export default class MenuBuilder {
                 },
               },
             ],
-      },
-      {
-        label: 'Help',
-        submenu: [
-          {
-            label: 'Learn More',
-            click() {
-              shell.openExternal('http://electron.atom.io')
-            },
-          },
-          {
-            label: 'Documentation',
-            click() {
-              shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme')
-            },
-          },
-          {
-            label: 'Community Discussions',
-            click() {
-              shell.openExternal('https://discuss.atom.io/c/electron')
-            },
-          },
-          {
-            label: 'Search Issues',
-            click() {
-              shell.openExternal('https://github.com/atom/electron/issues')
-            },
-          },
-        ],
       },
     ]
 
