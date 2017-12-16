@@ -13,10 +13,7 @@ const CheckBox = props => (
       name={props.name}
       value={props.value}
       type="checkbox"
-      onChange={event => {
-        console.log(event)
-        props.onChange(event)
-      }}
+      onChange={event => props.onChange(event)}
       checked={props.checked}
     />
     <Label>{props.label}</Label>
