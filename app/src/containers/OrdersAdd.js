@@ -79,13 +79,13 @@ class OrdersAdd extends React.Component {
         </SelectField>
         <TextField
           name="size"
-          placeholder="Size"
+          placeholder="Size (Optional)"
           onChange={this.formChange}
           value={this.state.form.size}
         />
         <TextField
           name="color"
-          placeholder="Color"
+          placeholder="Color (Optional)"
           onChange={this.formChange}
           value={this.state.form.color}
         />

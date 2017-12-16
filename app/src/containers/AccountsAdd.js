@@ -73,7 +73,7 @@ class AccountsAdd extends React.Component {
         />
         <TextField
           name="addressThree"
-          placeholder="Address Line Three"
+          placeholder="Address Line Three (Optional)"
           onChange={this.formChange}
           value={this.state.form.addressThree}
         />
