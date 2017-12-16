@@ -44,7 +44,7 @@ class OrdersList extends React.Component {
     return ordersStore.orders.map(order => (
       <ListItem
         title={order.keywords.join(', ')}
-        subtitle={accountsStore.accounts[order.accountId].name}
+        subtitle={accountsStore.getById(order.accountId).name}
         key={order.id}
         status={order.state}
         onClickDelete={() => ordersStore.remove(order.id)}

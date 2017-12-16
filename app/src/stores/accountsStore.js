@@ -33,6 +33,12 @@ class AccountsStore {
   isEmpty() {
     return this.accounts.length === 0
   }
+
+  getById(id) {
+    const result = this.accounts.filter(account => account.id === id)
+
+    return result.length !== 0 ? result[0] : null
+  }
 }
 
 export default new AccountsStore()
