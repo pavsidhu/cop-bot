@@ -7,13 +7,19 @@ class AccountsStore {
   @observable
   accounts = []
 
+  @persist
+  @observable
+  nextId = 0
+
   add(details) {
     this.accounts.push(
       new Account({
-        id: this.accounts.length,
+        id: this.nextId,
         ...details,
       }),
     )
+
+    this.nextId += 1
   }
 
   update(id, details) {
