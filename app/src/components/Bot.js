@@ -33,7 +33,6 @@ class Bot extends React.Component {
       timezone: 'Europe/London',
       context: this,
       onTick: this.startOrder,
-      runOnInit: true,
     })
   }
 
