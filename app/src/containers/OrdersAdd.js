@@ -72,6 +72,7 @@ class OrdersAdd extends React.Component {
           <option value="tops_sweaters">Tops/Sweaters</option>
           <option value="sweatshirts">Sweatshirts</option>
           <option value="pants">Pants</option>
+          <option value="t-shirts">T-Shirts</option>
           <option value="hats">Hats</option>
           <option value="bags">Bags</option>
           <option value="accessories">Accessories</option>
