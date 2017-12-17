@@ -33,6 +33,7 @@ class Bot extends React.Component {
       timezone: 'Europe/London',
       context: this,
       onTick: this.startOrder,
+      runOnInit: true,
     })
   }
 
@@ -51,7 +52,7 @@ class Bot extends React.Component {
       order.state = 'running'
 
       try {
-        const account = this.props.accountsStore.accounts[order.accountId]
+        const account = this.props.accountsStore.getById(order.accountId)
 
         order.state = (await supremeBot(order, account)) ? 'success' : 'failure'
       } catch (e) {
