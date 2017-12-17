@@ -4,43 +4,29 @@ import addItem from './addItem'
 import checkout from './checkout'
 
 async function supremeBot(order, account) {
-  const browser = await puppeteer.launch({ headless: false })
+  const browser = await puppeteer.launch({ headless: true })
 
+  // Search for the item and get the URLs that match
   const productUrls = await getProductUrls(browser, order)
 
-  const responses = await Promise.all(
+  // Search for the item and get the URLs that match
+  const addItemResponses = await Promise.all(
+    // Attempt to add each item to the cart
     productUrls.map(async url => addItem(browser, url, order.size)),
   )
 
-  if (await responses.includes(true)) {
-    return checkout(browser, account)
+  if (await addItemResponses.includes(true)) {
+    // Checkout order and get success response
+    const checkoutResponse = await checkout(browser, account)
+
+    // await browser.close()
+
+    return checkoutResponse
   }
+
+  await browser.close()
+
   return false
 }
 
 export default supremeBot
-
-// supremeBot(
-//   {
-//     keywords: ['shearling'],
-//     color: 'Black',
-//     size: 'Large',
-//     category: 'Jackets',
-//   },
-//   {
-//     name: 'Pav Sidhu',
-//     email: 'pavsidhu@outlook.com',
-//     phone: '07429337715',
-//     addressOne: '26 Meirwen Drive',
-//     addressTwo: 'Culverhouse Cross',
-//     addressThree: '',
-//     city: 'Cardiff',
-//     postCode: 'CF5 4ND',
-//     country: 'GB',
-//     cardType: 'visa',
-//     cardNumber: '4659425746210256',
-//     cardExpiryMonth: '0109',
-//     cardExpiryYear: '2020',
-//     cardCvv: '291',
-//   },
-// )

@@ -37,6 +37,7 @@ async function addItem(browser, url, orderSize) {
 
   // Add to cart
   await page.click('form.add input[name=commit]')
+
   return true
 }
 

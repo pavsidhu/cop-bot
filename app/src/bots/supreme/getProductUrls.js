@@ -22,7 +22,6 @@ async function getProductUrls(browser, order) {
     '#container article',
     (products, keywords, color) =>
       products.map(product => {
-        console.log(product)
         const nameElement = product.querySelector('h1 .name-link')
 
         const productName = nameElement.innerHTML.toLowerCase()
