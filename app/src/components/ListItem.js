@@ -18,7 +18,6 @@ const ListItem = (props: Props) => (
     </Description>
 
     <Options>
-      <Option>Edit</Option>
       <Option onClick={props.onClickDelete}>Delete</Option>
     </Options>
   </Container>
