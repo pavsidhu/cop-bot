@@ -7,15 +7,11 @@ import { CronJob } from 'cron'
 import Button from './Button'
 import supremeBot from '../bots/supreme'
 
-@inject('ordersStore', 'accountsStore')
+@inject('ordersStore', 'accountsStore', 'optionsStore')
 @observer
 class Bot extends React.Component {
   constructor() {
     super()
-
-    this.state = {
-      isBotEnabled: false,
-    }
 
     this.scheduler = null
 
@@ -23,10 +19,11 @@ class Bot extends React.Component {
     this.stopBot = this.stopBot.bind(this)
     this.startOrder = this.startOrder.bind(this)
     this.updateBot = this.updateBot.bind(this)
+    this.updateChrome = this.updateChrome.bind(this)
   }
 
   startBot() {
-    this.setState(() => ({ isBotEnabled: true }))
+    this.props.optionsStore.isBotEnabled = true
 
     this.scheduler = new CronJob({
       cronTime: '* 11 * * 4',
@@ -39,7 +36,7 @@ class Bot extends React.Component {
   stopBot() {
     this.scheduler.stop()
 
-    this.setState(() => ({ isBotEnabled: false }))
+    this.props.optionsStore.isBotEnabled = false
   }
 
   async startOrder() {
@@ -52,8 +49,10 @@ class Bot extends React.Component {
 
       try {
         const account = this.props.accountsStore.getById(order.accountId)
+        const { hideChrome } = this.props.optionsStore
+        const response = await supremeBot(order, account, hideChrome)
 
-        order.state = (await supremeBot(order, account)) ? 'success' : 'failure'
+        order.state = response ? 'success' : 'failure'
       } catch (e) {
         order.state = 'failure'
       }
@@ -63,16 +62,30 @@ class Bot extends React.Component {
   }
 
   updateBot() {
-    this.setState(state => ({ isBotEnabled: !state.isBotEnabled }))
-    this.state.isBotEnabled ? this.stopBot() : this.startBot()
+    this.props.optionsStore.isBotEnabled = !this.props.optionsStore.isBotEnabled
+    this.props.optionsStore.isBotEnabled ? this.startBot() : this.stopBot()
+  }
+
+  updateChrome() {
+    this.props.optionsStore.hideChrome = !this.props.optionsStore.hideChrome
   }
 
   render() {
+    const { hideChrome, isBotEnabled } = this.props.optionsStore
+
     return (
-      <Container onClick={this.updateBot}>
-        <Text>{this.state.isBotEnabled ? 'Bot is On' : 'Bot is Off'} </Text>
-        <Toggle isBotEnabled={this.state.isBotEnabled} />
-        <Track />
+      <Container>
+        <ToggleContainer onClick={this.updateChrome}>
+          <Text>{hideChrome ? 'Chrome is Hidden' : 'Chrome is Shown'}</Text>
+          <Toggle on={!hideChrome} />
+          <Track />
+        </ToggleContainer>
+
+        <ToggleContainer onClick={this.updateBot}>
+          <Text>{isBotEnabled ? 'Bot is On' : 'Bot is Off'} </Text>
+          <Toggle on={isBotEnabled} />
+          <Track />
+        </ToggleContainer>
       </Container>
     )
   }
@@ -83,6 +96,12 @@ const Container = styled.div`
   top: 0;
   right: 0;
   margin: 16px 24px 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const ToggleContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -103,7 +122,7 @@ const Toggle = styled.div`
   animation: transform 1s forwards;
 
   ${props =>
-    props.isBotEnabled
+    props.on
       ? css`
           transform: translateX(32px);
           background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);

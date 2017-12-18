@@ -3,8 +3,8 @@ import getProductUrls from './getProductUrls'
 import addItem from './addItem'
 import checkout from './checkout'
 
-async function supremeBot(order, account) {
-  const browser = await puppeteer.launch({ headless: true })
+async function supremeBot(order, account, headless) {
+  const browser = await puppeteer.launch({ headless })
 
   // Search for the item and get the URLs that match
   const productUrls = await getProductUrls(browser, order)
