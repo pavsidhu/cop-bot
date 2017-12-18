@@ -42,7 +42,7 @@ async function checkout(browser, account) {
   await page.$eval('.g-recaptcha', e => e.remove())
 
   // Submit payment
-  // await page.click('input[name=commit]')
+  await page.click('input[name=commit]')
 
   return true
 }
