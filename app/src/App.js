@@ -5,6 +5,10 @@ import styled from 'styled-components'
 import Routes from './routes'
 import Navigation from './components/Navigation'
 
+const Container = styled.div`
+  margin-top: 120px;
+`
+
 const App = () => (
   <div>
     <Navigation title="Cop Bot" />
@@ -13,9 +17,5 @@ const App = () => (
     </Container>
   </div>
 )
-
-const Container = styled.div`
-  margin-top: 120px;
-`
 
 export default App

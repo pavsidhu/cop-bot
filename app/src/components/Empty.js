@@ -2,13 +2,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Empty = props => (
-  <Container>
-    <Icon>¯\_(ツ)_/¯</Icon>
-    <Text>{props.children}</Text>
-  </Container>
-)
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,5 +19,12 @@ const Text = styled.p`
   font-size: 16px;
   color: #818181;
 `
+
+const Empty = props => (
+  <Container>
+    <Icon>¯\_(ツ)_/¯</Icon>
+    <Text>{props.children}</Text>
+  </Container>
+)
 
 export default Empty

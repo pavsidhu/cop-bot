@@ -7,8 +7,6 @@ type Props = {
   children: string
 };
 
-const Subheader = (props: Props) => <Text>{props.children}</Text>
-
 const Text = styled.div`
   font-size: 16px;
   color: #818181;
@@ -16,5 +14,7 @@ const Text = styled.div`
   max-width: 400px;
   margin-bottom: 8px;
 `
+
+const Subheader = (props: Props) => <Text>{props.children}</Text>
 
 export default Subheader

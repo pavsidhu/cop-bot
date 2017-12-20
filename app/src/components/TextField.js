@@ -11,22 +11,11 @@ type Props = {
   onChange: SyntheticInputEvent => void
 };
 
-const TextField = (props: Props) => (
-  <Input
-    name={props.name}
-    type={props.type}
-    placeholder={props.placeholder}
-    onChange={e => props.onChange(e)}
-    value={props.value}
-    autofocus={props.autofocus}
-  />
-)
-
 TextField.defaultProps = {
   type: 'text',
   placeholder: 'Placeholder',
   value: '',
-  autofocus: false,
+  autofocus: false
 }
 
 const Input = styled.input`
@@ -52,5 +41,16 @@ const Input = styled.input`
     outline: 2px #a3a3a3 solid;
   }
 `
+
+const TextField = (props: Props) => (
+  <Input
+    name={props.name}
+    type={props.type}
+    placeholder={props.placeholder}
+    onChange={e => props.onChange(e)}
+    value={props.value}
+    autofocus={props.autofocus}
+  />
+)
 
 export default TextField

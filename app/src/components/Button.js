@@ -7,8 +7,6 @@ type Props = {
   onClick: () => void
 };
 
-const Button = (props: Props) => <Container onClick={props.onClick}>{props.text}</Container>
-
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -28,5 +26,7 @@ const Container = styled.div`
     transform: scale(1.05);
   }
 `
+
+const Button = (props: Props) => <Container onClick={props.onClick}>{props.text}</Container>
 
 export default Button

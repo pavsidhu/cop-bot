@@ -9,23 +9,6 @@ type Props = {
   backButton?: string,
   noMargin?: boolean,
   children: React.Node
-};
-
-const Paper = (props: Props) => (
-  <Container>
-    {props.backButton ? (
-      <BackButton onClick={props.history.goBack}>
-        <BackButtonIcon src={backIcon} />
-        <BackButtonText>{props.backButton}</BackButtonText>
-      </BackButton>
-    ) : null}
-    <ChildrenContainer noMargin={props.noMargin}>{props.children}</ChildrenContainer>
-  </Container>
-)
-
-Paper.defaultProps = {
-  backButton: '',
-  noMargin: false
 }
 
 const Container = styled.div`
@@ -67,5 +50,24 @@ const ChildrenContainer = styled.div`
       padding: 24px 0;
     `};
 `
+
+const Paper = (props: Props) => (
+  <Container>
+    {props.backButton ? (
+      <BackButton onClick={props.history.goBack}>
+        <BackButtonIcon src={backIcon} />
+        <BackButtonText>{props.backButton}</BackButtonText>
+      </BackButton>
+    ) : null}
+    <ChildrenContainer noMargin={props.noMargin}>
+      {props.children}
+    </ChildrenContainer>
+  </Container>
+)
+
+Paper.defaultProps = {
+  backButton: '',
+  noMargin: false
+}
 
 export default withRouter(Paper)

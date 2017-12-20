@@ -7,6 +7,54 @@ import { CronJob } from 'cron'
 import Button from './Button'
 import supremeBot from '../bots/supreme'
 
+const Container = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 16px 24px 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const ToggleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const Text = styled.p`
+  font-size: 16px;
+  line-height: 20px;
+  color: white;
+  margin-right: 16px;
+  transform: translateX(24px);
+`
+
+const Toggle = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 48px;
+  animation: transform 1s forwards;
+
+  ${props =>
+    props.on
+      ? css`
+          transform: translateX(32px);
+          background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+        `
+      : css`
+          transform: translateX(20px);
+          background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+        `};
+`
+const Track = styled.div`
+  width: 32px;
+  height: 8px;
+  background-color: white;
+  border-radius: 4px;
+`
+
 @inject('ordersStore', 'accountsStore', 'optionsStore')
 @observer
 class Bot extends React.Component {
@@ -29,7 +77,7 @@ class Bot extends React.Component {
       cronTime: '* 11 * * 4',
       timezone: 'Europe/London',
       context: this,
-      onTick: this.startOrder,
+      onTick: this.startOrder
     })
   }
 
@@ -41,7 +89,7 @@ class Bot extends React.Component {
 
   async startOrder() {
     const _ = new Notification('🛒 Cop Bot is running', {
-      body: 'Good luck for this drop',
+      body: 'Good luck for this drop'
     })
 
     await this.props.ordersStore.orders.map(async order => {
@@ -90,53 +138,5 @@ class Bot extends React.Component {
     )
   }
 }
-
-const Container = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  margin: 16px 24px 0 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`
-
-const ToggleContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`
-
-const Text = styled.p`
-  font-size: 16px;
-  line-height: 20px;
-  color: white;
-  margin-right: 16px;
-  transform: translateX(24px);
-`
-
-const Toggle = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 48px;
-  animation: transform 1s forwards;
-
-  ${props =>
-    props.on
-      ? css`
-          transform: translateX(32px);
-          background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
-        `
-      : css`
-          transform: translateX(20px);
-          background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-        `};
-`
-const Track = styled.div`
-  width: 32px;
-  height: 8px;
-  background-color: white;
-  border-radius: 4px;
-`
 
 export default Bot

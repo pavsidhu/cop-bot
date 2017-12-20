@@ -12,17 +12,6 @@ type Props = {
   children: React.Node
 };
 
-const SelectField = (props: Props) => (
-  <Select
-    name={props.name}
-    onChange={props.onChange}
-    value={props.value}
-    autofocus={props.autofocus}
-  >
-    {props.children}
-  </Select>
-)
-
 SelectField.defaultProps = {
   value: '',
   onChange: () => null,
@@ -49,5 +38,16 @@ const Select = styled.select`
     outline: 2px #a3a3a3 solid;
   }
 `
+
+const SelectField = (props: Props) => (
+  <Select
+    name={props.name}
+    onChange={props.onChange}
+    value={props.value}
+    autofocus={props.autofocus}
+  >
+    {props.children}
+  </Select>
+)
 
 export default SelectField

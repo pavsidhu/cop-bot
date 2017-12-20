@@ -9,19 +9,6 @@ import tickIcon from '../assets/icons/checkbox.svg'
 //   onChange: SyntheticInputEvent => void
 // };
 
-const CheckBox = props => (
-  <Container>
-    <Input
-      name={props.name}
-      value={props.value}
-      type="checkbox"
-      onChange={event => props.onChange(event)}
-      checked={props.checked}
-    />
-    <Label>{props.label}</Label>
-  </Container>
-)
-
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -56,5 +43,18 @@ const Label = styled.label`
   font-size: 18px;
   -webkit-user-select: none;
 `
+
+const CheckBox = props => (
+  <Container>
+    <Input
+      name={props.name}
+      value={props.value}
+      type="checkbox"
+      onChange={event => props.onChange(event)}
+      checked={props.checked}
+    />
+    <Label>{props.label}</Label>
+  </Container>
+)
 
 export default CheckBox

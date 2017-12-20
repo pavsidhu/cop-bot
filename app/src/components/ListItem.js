@@ -13,20 +13,6 @@ type Props = {
   status?: 'waiting' | 'running' | 'success' | 'failure' | null
 };
 
-const ListItem = (props: Props) => (
-  <Container>
-    {props.status ? <Status status={props.status} /> : null}
-    <Description>
-      <Title>{props.title}</Title>
-      <Subtitle>{props.subtitle}</Subtitle>
-    </Description>
-
-    <Options>
-      <Option onClick={props.onClickDelete}>Delete</Option>
-    </Options>
-  </Container>
-)
-
 ListItem.defaultProps = {
   status: null
 }
@@ -105,5 +91,19 @@ const Option = styled.div`
   margin-left: 24px;
   color: #818181;
 `
+
+const ListItem = (props: Props) => (
+  <Container>
+    {props.status ? <Status status={props.status} /> : null}
+    <Description>
+      <Title>{props.title}</Title>
+      <Subtitle>{props.subtitle}</Subtitle>
+    </Description>
+
+    <Options>
+      <Option onClick={props.onClickDelete}>Delete</Option>
+    </Options>
+  </Container>
+)
 
 export default ListItem

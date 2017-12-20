@@ -8,23 +8,6 @@ type Props = {
   title: string
 };
 
-const Navigation = (props: Props) => (
-  <Container>
-    <Title>{props.title}</Title>
-
-    <Bot />
-
-    <Tabs>
-      <Link to="/orders">
-        <Tab active={props.location.pathname.includes('/orders')}>Orders</Tab>
-      </Link>
-      <Link to="/accounts">
-        <Tab active={props.location.pathname.includes('/accounts')}>Accounts</Tab>
-      </Link>
-    </Tabs>
-  </Container>
-)
-
 const Container = styled.div`
   background-image: linear-gradient(to right, #ed6ea0 0%, #ec8c69 100%);
   -webkit-app-region: drag;
@@ -76,5 +59,22 @@ const Tab = styled.div`
       background-color: rgba(255, 255, 255, 0.2);
     `};
 `
+
+const Navigation = (props: Props) => (
+  <Container>
+    <Title>{props.title}</Title>
+
+    <Bot />
+
+    <Tabs>
+      <Link to="/orders">
+        <Tab active={props.location.pathname.includes('/orders')}>Orders</Tab>
+      </Link>
+      <Link to="/accounts">
+        <Tab active={props.location.pathname.includes('/accounts')}>Accounts</Tab>
+      </Link>
+    </Tabs>
+  </Container>
+)
 
 export default withRouter(Navigation)

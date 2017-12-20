@@ -1,4 +1,3 @@
-/* eslint flowtype-errors/show-errors: 0 */
 import React from 'react'
 import { Route, Redirect, Switch } from 'react-router'
 import AccountsList from './containers/AccountsList'
@@ -6,7 +5,7 @@ import AccountsAdd from './containers/AccountsAdd'
 import OrdersList from './containers/OrdersList'
 import OrdersAdd from './containers/OrdersAdd'
 
-export default () => (
+const Routes = () => (
   <Switch>
     <Redirect from="/" exact to="/orders" />
     <Route exact path="/accounts" component={AccountsList} />
@@ -15,3 +14,5 @@ export default () => (
     <Route exact path="/orders/add" component={OrdersAdd} />
   </Switch>
 )
+
+export default Routes

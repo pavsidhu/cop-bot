@@ -8,14 +8,6 @@ type Props = {
   icon: string
 };
 
-const FloatingActionButton = (props: Props) => (
-  <Link to={props.link}>
-    <Button>
-      <Icon src={props.icon} />
-    </Button>
-  </Link>
-)
-
 const Icon = styled.img`
   width: 24px;
   height: 24px;
@@ -41,4 +33,11 @@ const Button = styled.div`
   }
 `
 
+const FloatingActionButton = (props: Props) => (
+  <Link to={props.link}>
+    <Button>
+      <Icon src={props.icon} />
+    </Button>
+  </Link>
+)
 export default FloatingActionButton
