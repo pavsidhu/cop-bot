@@ -2,6 +2,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
+import statusRunningIcon from '../assets/icons/status_running.svg'
+import statusSuccessIcon from '../assets/icons/status_success.svg'
+import statusFailureIcon from '../assets/icons/status_failure.svg'
+import statusWaitingIcon from '../assets/icons/status_waiting.svg'
+
 type Props = {
   title: string,
   subtitle: string,
@@ -23,7 +28,7 @@ const ListItem = (props: Props) => (
 )
 
 ListItem.defaultProps = {
-  status: null,
+  status: null
 }
 
 const Container = styled.div`
@@ -50,23 +55,23 @@ const Status = styled.div`
     switch (props.status) {
       case 'running':
         return css`
-          background-image: url('./src/assets/icons/status_running.svg'),
+          background-image: url(${statusRunningIcon}),
             linear-gradient(to top, #4481eb 0%, #04befe 100%);
         `
       case 'success':
         return css`
-          background-image: url('./src/assets/icons/status_success.svg'),
+          background-image: url(${statusSuccessIcon}),
             linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
         `
       case 'failure':
         return css`
-          background-image: url('./src/assets/icons/status_failure.svg'),
+          background-image: url(${statusFailureIcon}),
             linear-gradient(to top, #f77062 0%, #fe5196 100%);
         `
       case 'waiting':
       default:
         return css`
-          background-image: url('./src/assets/icons/status_waiting.svg'),
+          background-image: url(${statusWaitingIcon}),
             linear-gradient(60deg, #29323c 0%, #485563 100%);
         `
     }

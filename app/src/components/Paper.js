@@ -3,6 +3,8 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { withRouter } from 'react-router'
 
+import backIcon from '../assets/icons/back.svg'
+
 type Props = {
   backButton?: string,
   noMargin?: boolean,
@@ -13,7 +15,7 @@ const Paper = (props: Props) => (
   <Container>
     {props.backButton ? (
       <BackButton onClick={props.history.goBack}>
-        <BackButtonIcon src="./src/assets/icons/back.svg" />
+        <BackButtonIcon src={backIcon} />
         <BackButtonText>{props.backButton}</BackButtonText>
       </BackButton>
     ) : null}
@@ -23,7 +25,7 @@ const Paper = (props: Props) => (
 
 Paper.defaultProps = {
   backButton: '',
-  noMargin: false,
+  noMargin: false
 }
 
 const Container = styled.div`
