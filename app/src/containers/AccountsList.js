@@ -6,6 +6,7 @@ import { inject, observer } from 'mobx-react'
 import Paper from '../components/Paper'
 import ListItem from '../components/ListItem'
 import FloatingActionButton from '../components/FloatingActionButton'
+import Empty from '../components/Empty'
 import AddIcon from '../assets/icons/add.svg'
 
 @inject('accountsStore', 'ordersStore')
@@ -20,14 +21,7 @@ class AccountsList extends React.Component {
   getAccounts() {
     const { accountsStore, ordersStore } = this.props
 
-    if (accountsStore.isEmpty()) {
-      return (
-        <EmptyContainer>
-          <EmptyIcon>¯\_(ツ)_/¯</EmptyIcon>
-          <EmptyText>No accounts have been added</EmptyText>
-        </EmptyContainer>
-      )
-    }
+    if (accountsStore.isEmpty()) return <Empty>No accounts have been added</Empty>
 
     return accountsStore.accounts.map(account => (
       <ListItem
@@ -56,23 +50,5 @@ class AccountsList extends React.Component {
     )
   }
 }
-
-const EmptyContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-
-const EmptyIcon = styled.p`
-  font-size: 32px;
-  color: #818181;
-  margin-bottom: 8px;
-`
-
-const EmptyText = styled.p`
-  font-size: 16px;
-  color: #818181;
-`
 
 export default AccountsList

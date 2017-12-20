@@ -6,6 +6,7 @@ import { inject, observer } from 'mobx-react'
 import Paper from '../components/Paper'
 import ListItem from '../components/ListItem'
 import FloatingActionButton from '../components/FloatingActionButton'
+import Empty from '../components/Empty'
 import AddIcon from '../assets/icons/add.svg'
 
 @inject('accountsStore', 'ordersStore')
@@ -21,24 +22,11 @@ class OrdersList extends React.Component {
     const { ordersStore, accountsStore } = this.props
 
     if (accountsStore.isEmpty()) {
-      return (
-        <EmptyContainer>
-          <EmptyIcon>¯\_(ツ)_/¯</EmptyIcon>
-          <EmptyText>No orders have been added</EmptyText>
-          {accountsStore.isEmpty() ? (
-            <EmptyText>Please add an account before creating an order</EmptyText>
-          ) : null}
-        </EmptyContainer>
-      )
+      return <Empty>Please add an account before creating an order</Empty>
     }
 
     if (ordersStore.isEmpty()) {
-      return (
-        <EmptyContainer>
-          <EmptyIcon>¯\_(ツ)_/¯</EmptyIcon>
-          <EmptyText>No orders have been added</EmptyText>
-        </EmptyContainer>
-      )
+      return <Empty>No orders have been added</Empty>
     }
 
     return ordersStore.orders.map(order => (
