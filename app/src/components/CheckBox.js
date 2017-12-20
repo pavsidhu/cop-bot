@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import tickIcon from '../assets/icons/checkbox.svg'
+
 // type Props = {
 //   value: string | number,
 //   label: string,
@@ -43,7 +45,7 @@ const Input = styled.input`
   }
 
   &:checked {
-    background-image: url('./src/assets/icons/checkbox.svg');
+    background-image: url(${tickIcon});
     background-repeat: no-repeat;
     background-size: contain;
   }

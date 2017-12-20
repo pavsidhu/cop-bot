@@ -2,6 +2,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import selectIcon from '../assets/icons/select.svg'
+
 type Props = {
   name: string,
   value?: string,
@@ -24,7 +26,7 @@ const SelectField = (props: Props) => (
 SelectField.defaultProps = {
   value: '',
   onChange: () => null,
-  autofocus: false,
+  autofocus: false
 }
 
 const Select = styled.select`
