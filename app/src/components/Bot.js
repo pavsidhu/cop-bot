@@ -97,8 +97,9 @@ class Bot extends React.Component {
 
       try {
         const account = this.props.accountsStore.getById(order.accountId)
-        const { hideChrome } = this.props.optionsStore
-        const response = await supremeBot(order, account, hideChrome)
+        const { showChrome } = this.props.optionsStore
+
+        const response = await supremeBot(order, account, showChrome)
 
         order.state = response ? 'success' : 'failure'
       } catch (e) {
@@ -115,17 +116,17 @@ class Bot extends React.Component {
   }
 
   updateChrome() {
-    this.props.optionsStore.hideChrome = !this.props.optionsStore.hideChrome
+    this.props.optionsStore.showChrome = !this.props.optionsStore.showChrome
   }
 
   render() {
-    const { hideChrome, isBotEnabled } = this.props.optionsStore
+    const { showChrome, isBotEnabled } = this.props.optionsStore
 
     return (
       <Container>
         <ToggleContainer onClick={this.updateChrome}>
-          <Text>Hide Chrome</Text>
-          <Toggle on={hideChrome} />
+          <Text>Show Chrome</Text>
+          <Toggle on={showChrome} />
           <Track />
         </ToggleContainer>
 

@@ -1,7 +1,7 @@
 import { observable } from 'mobx'
 
 class OptionsStore {
-  @observable hideChrome = false
+  @observable showChrome = true
   @observable isBotEnabled = false
 }
 
