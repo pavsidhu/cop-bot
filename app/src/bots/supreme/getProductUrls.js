@@ -9,7 +9,7 @@ async function getProductUrls(browser, order) {
 
   try {
     await page.goto(`http://www.supremenewyork.com/shop/all/${orderCategory}`, {
-      waitUntil: 'domcontentloaded',
+      waitUntil: 'domcontentloaded'
     })
 
     attempts += 1
@@ -37,7 +37,7 @@ async function getProductUrls(browser, order) {
         return null
       }),
     orderKeywords,
-    orderColor,
+    orderColor
   )
 
   return productUrls.filter(url => url !== null)
