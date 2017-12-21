@@ -14,7 +14,9 @@ class AccountsAdd extends React.Component {
     super(props)
 
     this.state = {
-      form: {},
+      form: {
+        cardType: 'visa'
+      }
     }
 
     this.formChange = this.formChange.bind(this)
@@ -25,8 +27,8 @@ class AccountsAdd extends React.Component {
     this.setState({
       form: {
         ...this.state.form,
-        [event.target.name]: event.target.value,
-      },
+        [event.target.name]: event.target.value
+      }
     })
   }
 
