@@ -12,12 +12,6 @@ type Props = {
   children: React.Node
 };
 
-SelectField.defaultProps = {
-  value: '',
-  onChange: () => null,
-  autofocus: false
-}
-
 const Select = styled.select`
   width: 80%;
   max-width: 400px;
@@ -29,7 +23,7 @@ const Select = styled.select`
   margin-bottom: 24px;
   border-radius: 0;
   -webkit-appearance: none;
-  background-image: url('./src/assets/icons/select.svg');
+  background-image: url(${selectIcon});
   background-size: 24px 24px;
   background-repeat: no-repeat;
   background-position: calc(100% - 16px) center;
@@ -49,5 +43,11 @@ const SelectField = (props: Props) => (
     {props.children}
   </Select>
 )
+
+SelectField.defaultProps = {
+  value: '',
+  onChange: () => null,
+  autofocus: false
+}
 
 export default SelectField

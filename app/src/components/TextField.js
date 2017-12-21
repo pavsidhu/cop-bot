@@ -11,13 +11,6 @@ type Props = {
   onChange: SyntheticInputEvent => void
 };
 
-TextField.defaultProps = {
-  type: 'text',
-  placeholder: 'Placeholder',
-  value: '',
-  autofocus: false
-}
-
 const Input = styled.input`
   width: 80%;
   max-width: 400px;
@@ -52,5 +45,12 @@ const TextField = (props: Props) => (
     autofocus={props.autofocus}
   />
 )
+
+TextField.defaultProps = {
+  type: 'text',
+  placeholder: 'Placeholder',
+  value: '',
+  autofocus: false
+}
 
 export default TextField

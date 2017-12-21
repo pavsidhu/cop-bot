@@ -13,10 +13,6 @@ type Props = {
   status?: 'waiting' | 'running' | 'success' | 'failure' | null
 };
 
-ListItem.defaultProps = {
-  status: null
-}
-
 const Container = styled.div`
   display: flex;
   align-self: stretch;
@@ -105,5 +101,9 @@ const ListItem = (props: Props) => (
     </Options>
   </Container>
 )
+
+ListItem.defaultProps = {
+  status: null
+}
 
 export default ListItem
