@@ -19,7 +19,7 @@ async function supremeBot(order, account, showChrome) {
     // Checkout order and get success response
     const checkoutResponse = await checkout(browser, account)
 
-    if (headless) {
+    if (!showChrome) {
       await browser.close()
     }
 
