@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 import { inject, observer } from 'mobx-react'
 import { CronJob } from 'cron'
 
-import Button from './Button'
 import supremeBot from '../bots/supreme'
 
 const Container = styled.div`
@@ -77,7 +76,8 @@ class Bot extends React.Component {
       cronTime: '* 11 * * 4',
       timezone: 'Europe/London',
       context: this,
-      onTick: this.startOrder
+      onTick: this.startOrder,
+      start: true
     })
   }
 
@@ -124,8 +124,8 @@ class Bot extends React.Component {
     return (
       <Container>
         <ToggleContainer onClick={this.updateChrome}>
-          <Text>{hideChrome ? 'Chrome is Hidden' : 'Chrome is Shown'}</Text>
-          <Toggle on={!hideChrome} />
+          <Text>Hide Chrome</Text>
+          <Toggle on={hideChrome} />
           <Track />
         </ToggleContainer>
 
