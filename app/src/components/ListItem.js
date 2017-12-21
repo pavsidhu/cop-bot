@@ -18,7 +18,6 @@ const Container = styled.div`
   align-self: stretch;
   align-items: center;
   padding: 16px 16px;
-  cursor: pointer;
 
   &:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.02);
@@ -86,6 +85,7 @@ const Options = styled.div`
 const Option = styled.div`
   margin-left: 24px;
   color: #818181;
+  cursor: pointer;
 `
 
 const ListItem = (props: Props) => (
