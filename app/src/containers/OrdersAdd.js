@@ -17,7 +17,7 @@ class OrdersAdd extends React.Component {
 
     this.state = {
       form: {},
-      accountIds: [],
+      accountIds: []
     }
 
     this.formChange = this.formChange.bind(this)
@@ -29,8 +29,8 @@ class OrdersAdd extends React.Component {
     this.setState({
       form: {
         ...this.state.form,
-        [event.target.name]: event.target.value,
-      },
+        [event.target.name]: event.target.value
+      }
     })
   }
 
@@ -40,7 +40,7 @@ class OrdersAdd extends React.Component {
     this.setState({
       accountIds: event.target.checked
         ? [...this.state.accountIds, accountId]
-        : [...this.state.accountIds.filter(Id => Id !== accountId)],
+        : [...this.state.accountIds.filter(Id => Id !== accountId)]
     })
   }
 
