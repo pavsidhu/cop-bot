@@ -12,14 +12,16 @@ async function supremeBot(order, account, headless) {
   // Search for the item and get the URLs that match
   const addItemResponses = await Promise.all(
     // Attempt to add each item to the cart
-    productUrls.map(async url => addItem(browser, url, order.size)),
+    productUrls.map(async url => addItem(browser, url, order.size))
   )
 
   if (await addItemResponses.includes(true)) {
     // Checkout order and get success response
     const checkoutResponse = await checkout(browser, account)
 
-    // await browser.close()
+    if (headless) {
+      await browser.close()
+    }
 
     return checkoutResponse
   }
