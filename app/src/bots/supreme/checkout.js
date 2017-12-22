@@ -4,29 +4,27 @@ async function checkout(browser, account) {
   const address = encodeURI(
     `${account.name}|${account.addressOne}|${account.addressTwo}|${account.addressThree}|${
       account.city
-    }|${account.postCode}|${account.country}|${account.email}|${account.phone}`,
+    }|${account.postCode}|${account.country}|${account.email}|${account.phone}`
   ).replace('%20', '+')
 
   await page.setCookie({
     name: 'address',
     value: address,
-    domain: 'www.supremenewyork.com',
+    domain: 'www.supremenewyork.com'
   })
 
   let attempts = 0
 
   try {
     await page.goto('https://www.supremenewyork.com/checkout', {
-      waitUntil: 'domcontentloaded',
+      waitUntil: 'domcontentloaded'
     })
 
     attempts += 1
   } catch (e) {
-    if (attempts > 10) throw new Error('DAMMIT')
+    if (attempts > 10) throw new Error()
     await page.reload()
   }
-
-  // await page.waitForSelector('#order_billing_name')
 
   // Set debit card information
   await page.select('#credit_card_type', account.cardType)

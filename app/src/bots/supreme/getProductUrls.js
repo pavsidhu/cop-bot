@@ -20,27 +20,32 @@ async function getProductUrls(browser, order) {
 
   const productUrls = await page.$$eval(
     '#container article',
-    (products, keywords, color) =>
-      products.map(product => {
+    (products, keywords, color) => {
+      const stripBom = s => s.replace(/[^A-Za-z 0-9 .,?""!@#$%^&*()-_=+;:<>/\\|}{[\]`~]*/g, '')
+
+      const urls = []
+
+      products.forEach(product => {
         const nameElement = product.querySelector('h1 .name-link')
 
-        const productName = nameElement.innerHTML.toLowerCase()
-        const productColor = product.querySelector('p .name-link').innerHTML.toLowerCase()
+        const productName = stripBom(nameElement.innerHTML).toLowerCase()
+        const productColor = stripBom(product.querySelector('p .name-link').innerHTML).toLowerCase()
 
         if (
           keywords.filter(k => productName.includes(k)).length > 0 &&
           productColor.includes(color)
         ) {
-          return nameElement.href
+          urls.push(nameElement.href)
         }
+      })
 
-        return null
-      }),
+      return urls
+    },
     orderKeywords,
     orderColor
   )
 
-  return productUrls.filter(url => url !== null)
+  return productUrls
 }
 
 export default getProductUrls
