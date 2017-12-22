@@ -5,12 +5,12 @@ async function addItem(browser, url, orderSize) {
 
   try {
     await page.goto(url, {
-      waitUntil: 'domcontentloaded',
+      waitUntil: 'domcontentloaded'
     })
 
     attempts += 1
   } catch (e) {
-    if (attempts > 10) throw new Error('DAMMIT')
+    if (attempts > 10) throw new Error()
     await page.reload()
   }
 
@@ -21,17 +21,21 @@ async function addItem(browser, url, orderSize) {
   }
 
   // Select size if it's an option
-  if (await page.$('#size')) {
+  if (await page.$('select#size')) {
     await page.$$eval(
       '#size option',
       (sizeOptions, size) => {
-        sizeOptions.map(sizeOption => {
+        sizeOptions.map((sizeOption, index) => {
+          if (size === '' || (size === null && index === 0)) {
+            document.querySelector('#size').value = sizeOption.value
+          }
+
           if (sizeOption.innerHTML.toLowerCase() === size) {
             document.querySelector('#size').value = sizeOption.value
           }
         })
       },
-      orderSize.toLowerCase(),
+      orderSize.toLowerCase()
     )
   }
 
