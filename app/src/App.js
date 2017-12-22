@@ -16,8 +16,6 @@ class App extends React.Component {
       const response = await fetch('https://s3-eu-west-1.amazonaws.com/cop-bot/valid.json')
       const data = await response.json()
 
-      console.log(await data)
-
       if ((await data.valid) === false) throw new Error()
     } catch (error) {
       alert('Cop Bot requires an internet connection, check your WiFi and try again.')
