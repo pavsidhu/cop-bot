@@ -4,7 +4,10 @@ import addItem from './addItem'
 import checkout from './checkout'
 
 async function supremeBot(order, account, showChrome) {
-  const browser = await puppeteer.launch({ headless: !showChrome })
+  const browser = await puppeteer.launch({
+    headless: !showChrome,
+    executablePath: '/Applications/Chromium.app/Contents/MacOS/Chromium'
+  })
 
   // Search for the item and get the URLs that match
   const productUrls = await getProductUrls(browser, order)
