@@ -1,18 +1,6 @@
 async function checkout(browser, account) {
   const page = await browser.newPage()
 
-  const address = encodeURI(
-    `${account.name}|${account.addressOne}|${account.addressTwo}|${account.addressThree}|${
-      account.city
-    }|${account.postCode}|${account.country}|${account.email}|${account.phone}`
-  ).replace('%20', '+')
-
-  await page.setCookie({
-    name: 'address',
-    value: address,
-    domain: 'www.supremenewyork.com'
-  })
-
   let attempts = 0
 
   try {
@@ -26,9 +14,29 @@ async function checkout(browser, account) {
     await page.reload()
   }
 
+  // Set personal information
+  await page.type('#order_billing_name', account.name)
+  await page.type('#order_email', account.email)
+  await page.type('#order_tel', account.phone)
+  await page.type('.order_billing_address input', account.addressOne)
+  await page.type('.order_billing_address_2 input', account.addressTwo)
+  await page.type('.order_billing_address_3 input', account.addressThree || '')
+  await page.type('#order_billing_city', account.city)
+  await console.log(1)
+  await console.log(account)
+  await console.log(2)
+  await page.type('#order_billing_zip', account.postCode)
+  await page.select('#order_billing_country', account.country)
+
   // Set debit card information
   await page.select('#credit_card_type', account.cardType)
-  await page.type('.credit_card_number input', account.cardNumber)
+
+  // Supreme jumbles the card number unless I set the value directly
+  const cardNumber = account.cardNumber.replace(/(.{4})/g, '$1 ').trim()
+  await page.evaluate(number => {
+    document.querySelector('.credit_card_number input').value = number
+  }, cardNumber)
+
   await page.select('#credit_card_month', account.cardExpiryMonth)
   await page.select('#credit_card_year', account.cardExpiryYear)
   await page.type('#vval', account.cardCvv)
