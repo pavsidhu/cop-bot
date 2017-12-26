@@ -15,7 +15,8 @@ class AccountsAdd extends React.Component {
 
     this.state = {
       form: {
-        cardType: 'visa'
+        cardType: 'visa',
+        country: 'AF'
       }
     }
 
@@ -86,10 +87,10 @@ class AccountsAdd extends React.Component {
           value={this.state.form.city}
         />
         <TextField
-          name="postcode"
+          name="postCode"
           placeholder="Postcode"
           onChange={this.formChange}
-          value={this.state.form.postcode}
+          value={this.state.form.postCode}
         />
         <SelectField name="country" onChange={this.formChange} value={this.state.form.country}>
           <option value="AF">Afghanistan</option>
