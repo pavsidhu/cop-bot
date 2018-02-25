@@ -88,6 +88,10 @@ var options = {
             })
           )
         }
+      },
+      {
+        from: 'src/icons',
+        to: 'icons'
       }
     ]),
     new HtmlWebpackPlugin({
