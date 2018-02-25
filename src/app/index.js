@@ -1,16 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'mobx-react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 import stores from './stores'
 import App from './App'
 import './app.global.css'
 
 render(
   <Provider {...stores}>
-    <Router>
+    <MemoryRouter initialEntries={['/app.html']}>
       <App />
-    </Router>
+    </MemoryRouter>
   </Provider>,
   document.getElementById('root')
 )
