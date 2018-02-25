@@ -3,6 +3,7 @@
   "productName": "Cop Bot",
   "version": "1.2.0",
   "description": "A purchase bot",
+  "license": "NOLICENSE",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pavsidhu/cop-bot"
