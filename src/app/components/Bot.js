@@ -66,7 +66,6 @@ class Bot extends React.Component {
     this.stopBot = this.stopBot.bind(this)
     this.startOrder = this.startOrder.bind(this)
     this.updateBot = this.updateBot.bind(this)
-    this.updateChrome = this.updateChrome.bind(this)
   }
 
   startBot() {
@@ -97,9 +96,8 @@ class Bot extends React.Component {
 
       try {
         const account = this.props.accountsStore.getById(order.accountId)
-        const { showChrome } = this.props.optionsStore
 
-        const response = await supremeBot(order, account, showChrome)
+        const response = await supremeBot(order, account)
 
         order.state = response ? 'success' : 'failure'
       } catch (e) {
@@ -115,21 +113,11 @@ class Bot extends React.Component {
     this.props.optionsStore.isBotEnabled ? this.startBot() : this.stopBot()
   }
 
-  updateChrome() {
-    this.props.optionsStore.showChrome = !this.props.optionsStore.showChrome
-  }
-
   render() {
-    const { showChrome, isBotEnabled } = this.props.optionsStore
+    const { isBotEnabled } = this.props.optionsStore
 
     return (
       <Container>
-        <ToggleContainer onClick={this.updateChrome}>
-          <Text>Show Chrome</Text>
-          <Toggle on={showChrome} />
-          <Track />
-        </ToggleContainer>
-
         <ToggleContainer onClick={this.updateBot}>
           <Text>{isBotEnabled ? 'Bot is On' : 'Bot is Off'} </Text>
           <Toggle on={isBotEnabled} />
