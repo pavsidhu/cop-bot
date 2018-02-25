@@ -10,14 +10,14 @@ type Props = {
   onChange?: SyntheticInputEvent => void,
   autofocus?: boolean,
   children: React.Node
-};
+}
 
 const Select = styled.select`
   width: 80%;
   max-width: 400px;
   background-color: #ededed;
   color: #313131;
-  font-size: 18px;
+  font-size: 16px;
   padding: 8px 56px 8px 16px;
   border: none;
   margin-bottom: 24px;

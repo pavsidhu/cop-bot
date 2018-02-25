@@ -9,14 +9,14 @@ type Props = {
   value?: string,
   autofocus?: boolean,
   onChange: SyntheticInputEvent => void
-};
+}
 
 const Input = styled.input`
   width: 80%;
   max-width: 400px;
   background-color: #ededed;
   color: #313131;
-  font-size: 18px;
+  font-size: 16px;
   padding: 8px 16px;
   border: none;
   box-sizing: border-box;
