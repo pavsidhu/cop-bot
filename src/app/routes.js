@@ -7,7 +7,7 @@ import OrdersAdd from './containers/OrdersAdd'
 
 const Routes = () => (
   <Switch>
-    <Redirect from="/" exact to="/orders" />
+    <Redirect from="/app.html" exact to="/orders" />
     <Route exact path="/accounts" component={AccountsList} />
     <Route exact path="/accounts/add" component={AccountsAdd} />
     <Route exact path="/orders" component={OrdersList} />
