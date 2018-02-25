@@ -1,7 +1,10 @@
 import { observable } from 'mobx'
+import { persist } from 'mobx-persist'
 
 class OptionsStore {
-  @observable isBotEnabled = false
+  @persist
+  @observable
+  isBotEnabled = false
 }
 
 export default new OptionsStore()
