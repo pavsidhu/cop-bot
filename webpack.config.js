@@ -38,6 +38,7 @@ var options = {
     path: path.join(__dirname, 'build'),
     filename: '[name].bundle.js'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
