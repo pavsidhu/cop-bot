@@ -11,7 +11,7 @@ type Props = {
   title: string,
   subtitle: string,
   status?: 'waiting' | 'running' | 'success' | 'failure' | null
-};
+}
 
 const Container = styled.div`
   display: flex;
@@ -84,6 +84,7 @@ const Options = styled.div`
 
 const Option = styled.div`
   margin-left: 24px;
+  font-size: 14px;
   color: #818181;
   cursor: pointer;
 `
