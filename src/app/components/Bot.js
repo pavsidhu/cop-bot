@@ -7,13 +7,11 @@ import { CronJob } from 'cron'
 import supremeBot from '../bots/supreme'
 
 const Container = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  margin: 16px 24px 0 0;
+  flex: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
 `
 
 const ToggleContainer = styled.div`

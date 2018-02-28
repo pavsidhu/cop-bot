@@ -6,7 +6,7 @@ import Bot from './Bot'
 
 type Props = {
   title: string
-};
+}
 
 const Container = styled.div`
   background-image: linear-gradient(to right, #ed6ea0 0%, #ec8c69 100%);
@@ -21,6 +21,15 @@ const Container = styled.div`
   width: 100vw;
   top: 0;
   left: 0;
+`
+
+const Main = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 0 24px;
 `
 
 const Title = styled.p`
@@ -62,16 +71,19 @@ const Tab = styled.div`
 
 const Navigation = (props: Props) => (
   <Container>
-    <Title>{props.title}</Title>
-
-    <Bot />
+    <Main>
+      <Title>{props.title}</Title>
+      <Bot />
+    </Main>
 
     <Tabs>
       <Link to="/orders">
         <Tab active={props.location.pathname.includes('/orders')}>Orders</Tab>
       </Link>
       <Link to="/accounts">
-        <Tab active={props.location.pathname.includes('/accounts')}>Accounts</Tab>
+        <Tab active={props.location.pathname.includes('/accounts')}>
+          Accounts
+        </Tab>
       </Link>
     </Tabs>
   </Container>
