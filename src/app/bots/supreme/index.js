@@ -1,39 +1,25 @@
-// import puppeteer from 'puppeteer'
-// import getProductUrls from './getProductUrls'
-// import addItem from './addItem'
-// import checkout from './checkout'
+import getProductUrls from './getProductUrls'
+import addItem from './addItem'
+import checkout from './checkout'
 
-// async function supremeBot(order, account, showChrome) {
-//   const browser = await puppeteer.launch({
-//     headless: !showChrome,
-//     executablePath: '/Applications/Chromium.app/Contents/MacOS/Chromium'
-//   })
+const delay = duration => new Promise(resolve => setTimeout(resolve, duration))
 
-//   // Search for the item and get the URLs that match
-//   const productUrls = await getProductUrls(browser, order)
+async function supremeBot(order, account, showChrome) {
+  // Search for the item and get the URLs that match
+  const productUrls = await getProductUrls(order)
 
-//   // Search for the item and get the URLs that match
-//   const addItemResponses = await Promise.all(
-//     // Attempt to add each item to the cart
-//     productUrls.map(async url => addItem(browser, url, order.size))
-//   )
+  // Search for the item and get the URLs that match
+  const addItemResponses = await Promise.all(
+    // Attempt to add each item to the cart
+    productUrls.map(async url => addItem(url, order.size))
+  )
 
-//   if (await addItemResponses.includes(true)) {
-//     // Checkout order and get success response
-//     const checkoutResponse = await checkout(browser, account)
+  if (await addItemResponses.includes(true)) {
+    // Checkout order and return success response
+    await setTimeout(() => checkout(account), 100)
+  }
 
-//     if (!showChrome) {
-//       await browser.close()
-//     }
+  return false
+}
 
-//     return checkoutResponse
-//   }
-
-//   await browser.close()
-
-//   return false
-// }
-
-// export default supremeBot
-
-export default () => null
+export default supremeBot

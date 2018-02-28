@@ -93,6 +93,11 @@ var options = {
       {
         from: 'src/icons',
         to: 'icons'
+      },
+      {
+        from: 'src/app/bots/*/pageScripts/*',
+        to: 'pageScripts',
+        flatten: true
       }
     ]),
     new HtmlWebpackPlugin({

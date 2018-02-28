@@ -1,51 +1,21 @@
-async function getProductUrls(browser, order) {
-  const page = await browser.newPage()
+import 'chrome-extension-async'
 
-  const orderCategory = order.category.toLowerCase()
-  const orderKeywords = order.keywords.map(k => k.toLowerCase())
-  const orderColor = order.color.toLowerCase()
+async function getProductUrls(order) {
+  const category = order.category.toLowerCase()
 
-  let attempts = 0
+  const tab = await chrome.tabs.create({
+    url: `http://www.supremenewyork.com/shop/all/${category}`
+  })
 
-  try {
-    await page.goto(`http://www.supremenewyork.com/shop/all/${orderCategory}`, {
-      waitUntil: 'domcontentloaded'
-    })
+  await chrome.tabs.executeScript(tab.id, {
+    code: `var order = ${JSON.stringify(order)}`
+  })
 
-    attempts += 1
-  } catch (e) {
-    if (attempts > 10) throw new Error('DAMMIT')
-    await page.reload()
-  }
+  const result = await chrome.tabs.executeScript(tab.id, {
+    file: 'pageScripts/getProductUrls.js'
+  })
 
-  const productUrls = await page.$$eval(
-    '#container article',
-    (products, keywords, color) => {
-      const stripBom = s => s.replace(/[^A-Za-z 0-9 .,?""!@#$%^&*()-_=+;:<>/\\|}{[\]`~]*/g, '')
-
-      const urls = []
-
-      products.forEach(product => {
-        const nameElement = product.querySelector('h1 .name-link')
-
-        const productName = stripBom(nameElement.innerHTML).toLowerCase()
-        const productColor = stripBom(product.querySelector('p .name-link').innerHTML).toLowerCase()
-
-        if (
-          keywords.filter(k => productName.includes(k)).length > 0 &&
-          productColor.includes(color)
-        ) {
-          urls.push(nameElement.href)
-        }
-      })
-
-      return urls
-    },
-    orderKeywords,
-    orderColor
-  )
-
-  return productUrls
+  return result[0]
 }
 
 export default getProductUrls
