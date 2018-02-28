@@ -14,6 +14,21 @@ const Container = styled.div`
   justify-content: flex-end;
 `
 
+const StartBot = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 180px;
+  font-size: 16px;
+  border-radius: 4px;
+  background-color: #fff3;
+  color: white;
+  padding: 8px 32px;
+  margin-left: 24px;
+  cursor: pointer;
+  -webkit-user-select: none;
+`
+
 const ToggleContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -117,10 +132,16 @@ class Bot extends React.Component {
     return (
       <Container>
         <ToggleContainer onClick={this.updateBot}>
-          <Text>{isBotEnabled ? 'Bot is On' : 'Bot is Off'} </Text>
+          <Text>
+            {isBotEnabled
+              ? 'Bot will automatically run at 11:00'
+              : 'Bot is off'}{' '}
+          </Text>
           <Toggle on={isBotEnabled} />
           <Track />
         </ToggleContainer>
+
+        <StartBot onClick={this.startOrder}>Start Bot</StartBot>
       </Container>
     )
   }
