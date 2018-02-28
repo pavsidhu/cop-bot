@@ -18,9 +18,7 @@ class App extends React.Component {
 
       if ((await data.valid) === false) throw new Error()
     } catch (error) {
-      alert(
-        'Cop Bot requires an internet connection, check your WiFi and try again.'
-      )
+      alert('There was an error, please try again.')
       window.close()
     }
   }
