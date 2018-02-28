@@ -7,8 +7,13 @@ pids
 *.pid
 *.seed
 node_modules
+
 # OSX
 .DS_Store
 *.ai
 build
 secrets.*.js
+
+# Chrome
+*.pem
+*.crx
