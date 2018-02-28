@@ -70,7 +70,7 @@ class Bot extends React.Component {
     this.props.optionsStore.isBotEnabled = true
 
     this.scheduler = new CronJob({
-      cronTime: '* 11 * * 4',
+      cronTime: '0 11 * * 4',
       timezone: 'Europe/London',
       context: this,
       onTick: this.startOrder,
