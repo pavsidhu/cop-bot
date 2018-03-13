@@ -5,6 +5,19 @@ import checkout from './checkout'
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration))
 
 async function supremeBot(order, account, showChrome) {
+  // Get cookies from Supreme
+  const cookies = await chrome.cookies.getAll({
+    domain: '.supremenewyork.com'
+  })
+
+  // Delete them to clear basket to prevent issues
+  await cookies.forEach(c =>
+    chrome.cookies.remove({
+      url: `http://www.supremenewyork.com${c.path}`,
+      name: c.name
+    })
+  )
+
   // Search for the item and get the URLs that match
   const productUrls = await getProductUrls(order)
 
