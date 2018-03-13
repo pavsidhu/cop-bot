@@ -5,7 +5,7 @@ import checkout from './checkout'
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration))
 
-async function supremeBot(order, account, showChrome) {
+async function supremeBot(order, account, options) {
   // Get cookies from Supreme
   const cookies = await chrome.cookies.getAll({
     domain: '.supremenewyork.com'
@@ -30,7 +30,7 @@ async function supremeBot(order, account, showChrome) {
 
   if (await addItemResponses.includes(true)) {
     // Checkout order and return success response
-    await setTimeout(() => checkout(account), 100)
+    await setTimeout(() => checkout(account, options), 500)
   }
 
   return false

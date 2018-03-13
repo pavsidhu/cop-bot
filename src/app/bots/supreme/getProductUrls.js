@@ -15,6 +15,8 @@ async function getProductUrls(order) {
     file: 'pageScripts/getProductUrls.js'
   })
 
+  await chrome.tabs.remove(tab.id)
+
   return result[0]
 }
 

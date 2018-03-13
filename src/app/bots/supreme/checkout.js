@@ -1,6 +1,6 @@
 import 'chrome-extension-async'
 
-async function checkout(account) {
+async function checkout(account, options) {
   const tab = await chrome.tabs.create({
     url: 'https://www.supremenewyork.com/checkout'
   })

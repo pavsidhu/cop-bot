@@ -7,13 +7,13 @@ else {
       if (orderSize === '' || (orderSize === null && index === 0))
         document.querySelector('#size').value = orderSize
 
-      if (size.innerHTML.toLowerCase() === orderSize.toLowerCase())
+      if (size.innerHTML.toLowerCase().includes(orderSize.toLowerCase()))
         document.querySelector('#size').value = size.value
     })
   }
 
   // Add to cart
-  $('form.add input[name=commit]').click()
+  $('input[name=commit]').click()
 
   true
 }

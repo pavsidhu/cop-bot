@@ -100,9 +100,8 @@ class Bot extends React.Component {
   }
 
   async startOrder() {
-    const _ = new Notification('🛒 Cop Bot is running', {
-      body: 'Good luck for this drop'
-    })
+    if (!this.props.optionsStore.isBotEnabled)
+      new Notification('🛒 Cop Bot is running, good luck!')
 
     await this.props.ordersStore.orders.map(async order => {
       order.state = 'running'
@@ -110,7 +109,10 @@ class Bot extends React.Component {
       try {
         const account = this.props.accountsStore.getById(order.accountId)
 
-        const response = await supremeBot(order, account)
+        const options = {
+        }
+
+        const response = await supremeBot(order, account, options)
 
         order.state = response ? 'success' : 'failure'
       } catch (e) {
@@ -118,7 +120,7 @@ class Bot extends React.Component {
       }
     })
 
-    await this.stopBot()
+    if (this.props.optionsStore.isBotEnabled) await this.stopBot()
   }
 
   updateBot() {
