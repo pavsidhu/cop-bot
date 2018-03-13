@@ -45,7 +45,9 @@ class OrdersAdd extends React.Component {
   }
 
   formSubmit() {
-    this.state.accountIds.map(accountId => this.props.ordersStore.add(this.state.form, accountId))
+    this.state.accountIds.map(accountId =>
+      this.props.ordersStore.add(this.state.form, accountId)
+    )
 
     this.props.history.goBack()
   }
@@ -76,6 +78,7 @@ class OrdersAdd extends React.Component {
           <option value="hats">Hats</option>
           <option value="bags">Bags</option>
           <option value="accessories">Accessories</option>
+          <option value="shoes">Shoes</option>
           <option value="skate">Skate</option>
         </SelectField>
         <TextField
