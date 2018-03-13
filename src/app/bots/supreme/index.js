@@ -1,3 +1,4 @@
+import 'chrome-extension-async'
 import getProductUrls from './getProductUrls'
 import addItem from './addItem'
 import checkout from './checkout'
