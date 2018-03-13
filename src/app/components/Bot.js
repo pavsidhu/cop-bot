@@ -3,7 +3,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { inject, observer } from 'mobx-react'
 import { CronJob } from 'cron'
-
+import Toggle from '../components/Toggle'
 import supremeBot from '../bots/supreme'
 
 const Container = styled.div`
@@ -27,44 +27,6 @@ const StartBot = styled.div`
   margin-left: 24px;
   cursor: pointer;
   -webkit-user-select: none;
-`
-
-const ToggleContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`
-
-const Text = styled.p`
-  font-size: 16px;
-  line-height: 20px;
-  color: white;
-  margin-right: 16px;
-  transform: translateX(24px);
-`
-
-const Toggle = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 48px;
-  animation: transform 1s forwards;
-
-  ${props =>
-    props.on
-      ? css`
-          transform: translateX(32px);
-          background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
-        `
-      : css`
-          transform: translateX(20px);
-          background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-        `};
-`
-const Track = styled.div`
-  width: 32px;
-  height: 8px;
-  background-color: white;
-  border-radius: 4px;
 `
 
 @inject('ordersStore', 'accountsStore', 'optionsStore')
@@ -110,6 +72,7 @@ class Bot extends React.Component {
         const account = this.props.accountsStore.getById(order.accountId)
 
         const options = {
+          reCaptcha: this.props.optionsStore.reCaptcha
         }
 
         const response = await supremeBot(order, account, options)
@@ -133,15 +96,13 @@ class Bot extends React.Component {
 
     return (
       <Container>
-        <ToggleContainer onClick={this.updateBot}>
-          <Text>
-            {isBotEnabled
-              ? 'Bot will automatically run at 11:00'
-              : 'Bot is off'}{' '}
-          </Text>
-          <Toggle on={isBotEnabled} />
-          <Track />
-        </ToggleContainer>
+        <Toggle
+          onClick={this.updateBot}
+          textOn="Bot will automatically run at 11:00"
+          textOff="Bot is off"
+          state={isBotEnabled}
+          nav
+        />
 
         <StartBot onClick={this.startOrder}>Start Bot</StartBot>
       </Container>

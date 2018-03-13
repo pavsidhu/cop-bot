@@ -6,7 +6,10 @@ async function checkout(account, options) {
   })
 
   await chrome.tabs.executeScript(tab.id, {
-    code: `var account = ${JSON.stringify(account)}`
+    code: `
+      var account = ${JSON.stringify(account)};
+      var reCaptcha = ${options.reCaptcha};
+    `
   })
 
   await chrome.tabs.executeScript(tab.id, {

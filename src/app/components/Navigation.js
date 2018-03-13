@@ -39,6 +39,13 @@ const Title = styled.p`
   color: white;
 `
 
+const SettingsButton = styled.img`
+  margin-left: 24px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+`
+
 const Tabs = styled.div`
   display: flex;
   align-self: stretch;
@@ -83,6 +90,11 @@ const Navigation = (props: Props) => (
       <Link to="/accounts">
         <Tab active={props.location.pathname.includes('/accounts')}>
           Accounts
+        </Tab>
+      </Link>
+      <Link to="/settings">
+        <Tab active={props.location.pathname.includes('/settings')}>
+          Settings
         </Tab>
       </Link>
     </Tabs>

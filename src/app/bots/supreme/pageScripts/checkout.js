@@ -1,29 +1,32 @@
-const setValue = (selector, value) =>
-  (document.querySelector(selector).value = value)
+// Make payment button bigger
+$('#pay *:not(.checkout)').css({ display: 'none' })
+$('#pay .checkout').css({ width: '100%', margin: '0' })
+$('#cart-footer').css({ padding: '0' })
 
 // Remove reCaptcha
-document.querySelector('.g-recaptcha').remove()
+if (!reCaptcha) document.querySelector('.g-recaptcha').remove()
 
 // Set personal information
-setValue('#order_billing_name', account.name)
-setValue('#order_email', account.email)
-setValue('#order_tel', account.phone)
-setValue('.order_billing_address input', account.addressOne)
-setValue('.order_billing_address_2 input', account.addressTwo)
-setValue('.order_billing_address_3 input', account.addressThree || '')
-setValue('#order_billing_city', account.city)
-setValue('#order_billing_zip', account.postCode)
-setValue('#order_billing_country', account.country)
+$('#order_billing_name').val(account.name)
+$('#order_email').val(account.email)
+$('#order_tel').val(account.phone)
+$('.order_billing_address input').val(account.addressOne)
+$('.order_billing_address_2 input').val(account.addressTwo)
+$('.order_billing_address_3 input').val(account.addressThree || '')
+$('#order_billing_city').val(account.city)
+$('#order_billing_zip').val(account.postCode)
+$('#order_billing_country').val(account.country)
 
 // Set debit card information
-setValue('#credit_card_type', account.cardType)
-setValue('.credit_card_number input', account.cardNumber)
-setValue('#credit_card_month', account.cardExpiryMonth)
-setValue('#credit_card_year', account.cardExpiryYear)
-setValue('#vval', account.cardCvv)
+$('#credit_card_type').val(account.cardType)
+$('.credit_card_number input').val(account.cardNumber)
+$('#credit_card_month').val(account.cardExpiryMonth)
+$('#credit_card_year').val(account.cardExpiryYear)
 
+// Accept terms
 $('input[name="order[terms]"]').attr('value', '1')
+$('.icheckbox_minimal').addClass('checked')
 
-setTimeout(() => $('input[name=commit]').click(), 1380)
+$('#vval').focus()
 
 true
