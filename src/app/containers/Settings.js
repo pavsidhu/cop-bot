@@ -14,10 +14,15 @@ class Settings extends React.Component {
     super()
 
     this.updateReCaptcha = this.updateReCaptcha.bind(this)
+    this.updateDelay = this.updateDelay.bind(this)
   }
 
   updateReCaptcha() {
     this.props.optionsStore.reCaptcha = !this.props.optionsStore.reCaptcha
+  }
+
+  updateDelay(e) {
+    this.props.optionsStore.delay = e.target.value
   }
 
   render() {
@@ -31,6 +36,12 @@ class Settings extends React.Component {
           textOff="ReCaptcha will be disabled"
           state={optionsStore.reCaptcha}
           darkTheme
+        />
+        <TextField
+          name="delay"
+          placeholder="Delay (Default is 2000ms)"
+          onChange={this.updateDelay}
+          value={optionsStore.delay || ''}
         />
       </Paper>
     )

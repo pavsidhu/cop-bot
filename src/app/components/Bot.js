@@ -72,6 +72,7 @@ class Bot extends React.Component {
         const account = this.props.accountsStore.getById(order.accountId)
 
         const options = {
+          delay: this.props.optionsStore.delay,
           reCaptcha: this.props.optionsStore.reCaptcha
         }
 

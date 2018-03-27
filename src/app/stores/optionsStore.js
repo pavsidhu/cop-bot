@@ -8,6 +8,10 @@ class OptionsStore {
 
   @persist
   @observable
+  delay = null
+
+  @persist
+  @observable
   reCaptcha = true
 }
 
