@@ -17,3 +17,6 @@ secrets.*.js
 # Chrome
 *.pem
 *.crx
+
+# Other
+*.zip
