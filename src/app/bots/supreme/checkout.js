@@ -17,6 +17,10 @@ async function checkout(account, options) {
     file: 'pageScripts/jQuery.js'
   })
 
+  await chrome.tabs.executeScript(tab.id, {
+    file: 'pageScripts/jquery.autotype.js'
+  })
+
   const result = await chrome.tabs.executeScript(tab.id, {
     file: 'pageScripts/checkout.js'
   })

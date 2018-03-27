@@ -1,7 +1,8 @@
-// Make payment button bigger
-$('#pay *:not(.checkout)').css({ display: 'none' })
-$('#pay .checkout').css({ width: '100%', margin: '0' })
-$('#cart-footer').css({ padding: '0' })
+function setValue(selector, value) {
+  $(selector).autotype(value, {
+    delay: Math.random(100) + 50
+  })
+}
 
 // Remove reCaptcha
 if (!reCaptcha) document.querySelector('.g-recaptcha').remove()
@@ -19,14 +20,15 @@ $('#order_billing_country').val(account.country)
 
 // Set debit card information
 $('#credit_card_type').val(account.cardType)
-$('.credit_card_number input').val(account.cardNumber)
+setValue('.credit_card_number input', account.cardNumber)
 $('#credit_card_month').val(account.cardExpiryMonth)
 $('#credit_card_year').val(account.cardExpiryYear)
+setValue('#vval', account.cardCvv)
 
 // Accept terms
 $('input[name="order[terms]"]').attr('value', '1')
 $('.icheckbox_minimal').addClass('checked')
 
-$('#vval').focus()
+setTimeout(() => $('input[name=commit]').click(), delay)
 
 true
