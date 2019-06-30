@@ -1,3 +1,9 @@
 # Cop Bot
 
-### A purchase bot
+> Supreme bot for Chrome 🛒
+
+![Website preview](./preview.png)
+
+## License
+
+MIT © [Pav Sidhu](https://pavsidhu.com)
